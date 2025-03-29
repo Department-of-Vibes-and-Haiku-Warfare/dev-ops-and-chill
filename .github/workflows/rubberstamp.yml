@@ -30,7 +30,7 @@ jobs:
         if: steps.vibecheck.outputs.approve == 'true'
         uses: hmarr/auto-approve-action@v3
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          github-token: ${{ secrets.RUBBERSTAMP_PAT }}
 
       - name: Log RubberStamp Approval
         if: steps.vibecheck.outputs.approve == 'true'
