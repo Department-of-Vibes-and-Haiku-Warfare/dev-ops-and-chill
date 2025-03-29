@@ -1,0 +1,44 @@
+name: RubberStamp
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  auto-approve:
+    name: Evaluate Vibe Conditions
+    runs-on: ubuntu-latest
+    if: github.actor == 'ChaosTestOps'
+    steps:
+      - name: Checkout PR code
+        uses: actions/checkout@v4
+
+      - name: Check PR metadata for vibe compliance
+        id: vibecheck
+        run: |
+          echo "🔍 Checking PR title and body for vibe compliance..."
+          TITLE="${{ github.event.pull_request.title }}"
+          BODY="${{ github.event.pull_request.body }}"
+
+          if [[ "$TITLE" == *"#VibeCoding"* ]] && \
+             ([[ "$BODY" == *"entropy"* ]] || [[ "$BODY" == *"2:17am"* ]] || [[ "$BODY" == *"seal"* ]]); then
+            echo "✅ Vibe conditions met."
+            echo "::set-output name=approve::true"
+          else
+            echo "❌ Vibe conditions not met."
+            echo "::set-output name=approve::false"
+          fi
+
+      - name: Approve PR (if conditions passed)
+        if: steps.vibecheck.outputs.approve == 'true'
+        uses: hmarr/auto-approve-action@v3
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Log RubberStamp Approval
+        if: steps.vibecheck.outputs.approve == 'true'
+        run: echo "🔏 RubberStamp has affixed its mark. Proceed."
+
+      - name: Log Vibe Rejection
+        if: steps.vibecheck.outputs.approve == 'false'
+        run: echo "💥 RubberStamp withheld judgment. Insufficient vibe signature."
