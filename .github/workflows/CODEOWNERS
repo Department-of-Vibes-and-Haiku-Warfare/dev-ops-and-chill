@@ -1,0 +1,4 @@
+# .github/CODEOWNERS
+
+# Only ChaosTestOps may approve changes to workflows
+.github/workflows/* @ChaosTestOps
