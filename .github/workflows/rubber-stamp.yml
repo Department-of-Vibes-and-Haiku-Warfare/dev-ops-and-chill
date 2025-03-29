@@ -1,7 +1,7 @@
 name: RubberStamp
 
 on:
-  pull_request:
+  pull_request_target:
     types: [opened, synchronize, reopened]
 
 jobs:
@@ -10,9 +10,6 @@ jobs:
     runs-on: ubuntu-latest
     if: github.actor == 'ChaosTestOps'
     steps:
-      - name: Checkout PR code
-        uses: actions/checkout@v4
-
       - name: Check PR metadata for vibe compliance
         id: vibecheck
         run: |
@@ -23,10 +20,10 @@ jobs:
           if [[ "$TITLE" == *"#VibeCoding"* ]] && \
              ([[ "$BODY" == *"entropy"* ]] || [[ "$BODY" == *"2:17am"* ]] || [[ "$BODY" == *"seal"* ]]); then
             echo "✅ Vibe conditions met."
-            echo "::set-output name=approve::true"
+            echo "approve=true" >> $GITHUB_OUTPUT
           else
             echo "❌ Vibe conditions not met."
-            echo "::set-output name=approve::false"
+            echo "approve=false" >> $GITHUB_OUTPUT
           fi
 
       - name: Approve PR (if conditions passed)
