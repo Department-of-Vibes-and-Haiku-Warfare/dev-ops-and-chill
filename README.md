@@ -1,4 +1,5 @@
 # Department of Vibes and Haiku Warfare
+# Dev, Ops, and chill 🥷
 
 Welcome to the most dangerous poetry machine on the internet.
 
