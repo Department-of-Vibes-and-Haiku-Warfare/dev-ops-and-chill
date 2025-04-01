@@ -22,7 +22,8 @@ class Program
             // Call the function to generate a haiku
             string haiku = await GenerateHaiku(apiKey);
 
-            var html = File.ReadAllText("template.html");
+            var templatePath = Path.Combine(AppContext.BaseDirectory, "template.html");
+            var html = File.ReadAllText(templatePath);
             html = html.Replace("{{DATE}}", DateTime.Now.ToString("yyyy-MM-dd"));
             html = html.Replace("{{HAIKU}}",
                 HttpUtility.HtmlEncode(haiku).ReplaceLineEndings("<br/>"));
