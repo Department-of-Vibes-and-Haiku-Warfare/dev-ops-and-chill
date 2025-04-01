@@ -2,7 +2,9 @@
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 using DotNetEnv;
+using Microsoft.VisualBasic;
 using Newtonsoft.Json;
 
 class Program
@@ -11,12 +13,20 @@ class Program
     {
         try
         {
+            var outputPath = args!.FirstOrDefault() ?? throw new Exception("Please provide the output path as a command line argument.");
+
             // Set your OpenAI API key here
             Env.Load();
             var apiKey = Environment.GetEnvironmentVariable("OPENAI_API_KEY") ?? throw new Exception("Please set the OPENAI_API_KEY environment variable.");
 
             // Call the function to generate a haiku
             string haiku = await GenerateHaiku(apiKey);
+
+            var html = File.ReadAllText("template.html");
+            html = html.Replace("{{DATE}}", DateTime.Now.ToString("yyyy-MM-dd"));
+            html = html.Replace("{{HAIKU}}",
+                HttpUtility.HtmlEncode(haiku).ReplaceLineEndings("<br/>"));
+            File.WriteAllText(outputPath, html);
 
             Console.WriteLine("Generated Haiku:\n" + haiku);
         }

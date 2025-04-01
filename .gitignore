@@ -404,3 +404,7 @@ FodyWeavers.xsd
 
 # Ignore macOS files
 .DS_Store
+src/HaikuGenerator/_output.html
+
+# Ignore debub output files
+_output.html
