@@ -401,3 +401,6 @@ FodyWeavers.xsd
 
 # Ignore .env NO SECRETS IN THE REPO
 .env
+
+# Ignore macOS files
+.DS_Store
