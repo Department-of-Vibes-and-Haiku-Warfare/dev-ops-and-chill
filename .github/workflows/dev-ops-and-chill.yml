@@ -35,16 +35,14 @@ jobs:
           dotnet run --project src/HaikuGenerator/HaikuGenerator.csproj docs/index.html
 
       - name: Commit and Push Changes
+        env:
+          TOKEN: ${{ secrets.PAT_FOR_ACTIONS }}
         run: |
-          # configure user
           git config --global user.name "${{ github.actor }}"
           git config --global user.email "${{ github.actor }}@users.noreply.github.com"
 
-          # stage any file changes to be committed
-          git add .
+          git add docs/index.html
+          git commit -m "Haiku generated from GitHub Actions workflow on $(date)" || echo "No changes to commit"
 
-          # make commit with staged changes
-          git commit -m 'Haiku generated from GitHub Actions workflow on $(date)'
-
-          # push the commit back up to source GitHub repository
-          git push
+          git remote set-url origin https://x-access-token:${TOKEN}@github.com/${{ github.repository }}
+          git push origin HEAD
