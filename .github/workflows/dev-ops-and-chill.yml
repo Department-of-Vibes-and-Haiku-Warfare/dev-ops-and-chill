@@ -53,5 +53,8 @@ jobs:
           git config --global gpg.program gpg
 
           git add docs/index.html
-          git commit -S -m "Signed haiku update"
+          git -c gpg.program="gpg --batch" \
+              -c commit.gpgsign=true \
+              -c user.signingkey=$KEY_ID \
+              commit -S -m "Signed haiku update"
           git push origin HEAD
