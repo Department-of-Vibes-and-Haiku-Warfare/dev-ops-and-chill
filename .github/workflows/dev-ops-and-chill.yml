@@ -26,6 +26,14 @@ jobs:
         with:
           dotnet-version: "9.0"
 
+      - name: Cache .NET packages
+        uses: actions/cache@v3
+        with:
+          path: ~/.nuget/packages
+          key: ${{ runner.os }}-nuget-${{ hashFiles('**/*.csproj') }}
+          restore-keys: |
+            ${{ runner.os }}-nuget-
+
       - name: Install dependencies
         run: |
           dotnet restore
@@ -33,6 +41,14 @@ jobs:
       - name: Build HaikuGenerator
         run: |
           dotnet build src/HaikuGenerator/HaikuGenerator.csproj --configuration Release
+
+      - name: Cache Node.js modules
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('src/scraper/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
 
       - name: Install Node.js and run scraper
         run: |
