@@ -44,7 +44,7 @@ jobs:
           gpg --batch --import chaosbot.asc
 
           KEY_ID=${{ secrets.BOT_GPG_KEY_ID }}
-          echo -e "5\ny\n" | gpg --command-fd 0 --expert --edit-key $KEY_ID trust
+          echo "$KEY_ID:6:" | gpg --import-ownertrust
 
           git config --global user.name "${{ secrets.BOT_USER }}"
           git config --global user.email "${{ secrets.BOT_EMAIL }}"
