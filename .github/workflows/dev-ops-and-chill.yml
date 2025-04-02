@@ -57,8 +57,12 @@ jobs:
 
           export GPG_TTY=$(tty)
           echo "${{ secrets.BOT_GPG_PASSPHRASE }}" | \
-            gpg --batch --yes --passphrase-fd 0 --pinentry-mode loopback
+            gpg --batch --yes --pinentry-mode loopback --passphrase-fd 0 \
+            --decrypt /dev/null || true
 
           git add docs/index.html
-          git commit -S -m "Signed haiku update"
+          git -c gpg.program=gpg \
+              -c commit.gpgsign=true \
+              -c user.signingkey=$KEY_ID \
+              commit -S -m "Signed haiku update"
           git push origin HEAD
