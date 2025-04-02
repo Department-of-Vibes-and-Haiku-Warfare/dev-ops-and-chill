@@ -10,6 +10,10 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      id-token: write
+      pull-requests: write
     env:
       OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
 
@@ -17,7 +21,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
         with:
-          TOKEN: ${{ secrets.BOT_PAT }}
+          token: ${{ secrets.BOT_PAT }}
 
       - name: Set up .NET
         uses: actions/setup-dotnet@v1
