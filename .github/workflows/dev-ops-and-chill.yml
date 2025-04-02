@@ -34,6 +34,12 @@ jobs:
         run: |
           dotnet build src/HaikuGenerator/HaikuGenerator.csproj --configuration Release
 
+      - name: Install Node.js and run scraper
+        run: |
+          cd src/scraper
+          npm ci
+          npm start
+
       - name: Run HaikuGenerator
         env:
           OUTPUT_PATH: ${{ github.workspace }}/docs/index.html
