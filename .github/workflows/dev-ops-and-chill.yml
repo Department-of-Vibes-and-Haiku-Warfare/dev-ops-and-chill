@@ -55,14 +55,15 @@ jobs:
           git config --global user.signingkey $KEY_ID
           git config --global gpg.program gpg
 
-          export GPG_TTY=$(tty)
-          echo "${{ secrets.BOT_GPG_PASSPHRASE }}" | \
-            gpg --batch --yes --pinentry-mode loopback --passphrase-fd 0 \
-            --decrypt /dev/null || true
-
           git add docs/index.html
-          git -c gpg.program=gpg \
-              -c commit.gpgsign=true \
-              -c user.signingkey=$KEY_ID \
-              commit -S -m "Signed haiku update"
+
+          echo "#!/usr/bin/expect -f" > sign.expect
+          echo "spawn git commit -S -m \"Signed haiku update\"" >> sign.expect
+          echo "expect \"Enter passphrase:\"" >> sign.expect
+          echo "send \"${{ secrets.BOT_GPG_PASSPHRASE }}\\r\"" >> sign.expect
+          echo "expect eof" >> sign.expect
+
+          chmod +x sign.expect
+          ./sign.expect
+
           git push origin HEAD
