@@ -12,7 +12,7 @@ Reading too many haikus may cause spontaneous enlightenment, mild side effects o
 
 ## Stretch Goals
 
-Become subject of a retaliatory executive order.
+Become subject of a [retaliatory executive order](https://www.npr.org/2025/03/28/g-s1-56890/law-firms-sue-trump).
 
 ## Hashtags
 
