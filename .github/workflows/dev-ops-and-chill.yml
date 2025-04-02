@@ -35,8 +35,12 @@ jobs:
           dotnet build src/HaikuGenerator/HaikuGenerator.csproj --configuration Release
 
       - name: Run HaikuGenerator
+        env:
+          OUTPUT_PATH: ${{ github.workspace }}/docs/index.html
+          TWEET_PATH: ${{ github.workspace }}/src/scraper/latest-tweet.txt
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
         run: |
-          dotnet run --project src/HaikuGenerator/HaikuGenerator.csproj docs/index.html
+          dotnet run --project src/HaikuGenerator/HaikuGenerator.csproj
 
       - name: Commit and Push Changes
         run: |

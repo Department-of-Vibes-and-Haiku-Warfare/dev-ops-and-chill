@@ -36,6 +36,17 @@
                 "${workspaceFolder}/src/HaikuGenerator/HaikuGenerator.csproj"
             ],
             "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "Install Playwright",
+            "type": "shell",
+            "command": "dotnet tool install --global Microsoft.Playwright.CLI && export PATH=\\\"$PATH:$HOME/.dotnet/tools\\\" && playwright install",
+            "problemMatcher": [],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "detail": "Installs Playwright browser binaries after ensuring CLI tool path is set."
         }
     ]
 }

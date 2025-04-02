@@ -13,6 +13,10 @@
             "program": "${workspaceFolder}/src/HaikuGenerator/bin/Debug/net9.0/HaikuGenerator.dll",
             "args": ["_output.html"],
             "cwd": "${workspaceFolder}/src/HaikuGenerator",
+            "env": {
+                "OUTPUT_PATH": "${workspaceFolder}/docs/index.html",
+                "TWEET_PATH": "${workspaceFolder}/src/scraper/latest-tweet.txt",
+            },
             // For more information about the 'console' field, see https://aka.ms/VSCode-CS-LaunchJson-Console
             "console": "internalConsole",
             "stopAtEntry": false

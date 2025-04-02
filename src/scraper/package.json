@@ -1,0 +1,14 @@
+{
+  "name": "scraper",
+  "version": "1.0.0",
+  "description": "Stealth Twitter scraper",
+  "main": "scrape.js",
+  "scripts": {
+    "start": "node scrape.js"
+  },
+  "dependencies": {
+    "puppeteer": "^21.3.8",
+    "puppeteer-extra": "^3.3.4",
+    "puppeteer-extra-plugin-stealth": "^2.11.2"
+  }
+}

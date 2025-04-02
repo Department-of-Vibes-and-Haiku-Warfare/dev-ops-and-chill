@@ -52,9 +52,15 @@
   </header>
 
   <main>
+    <div class="mood">
+      <h2>Current Mood</h2>
+      <p>Presidential mood: <strong>{{MOOD}}</strong></p>
+      <p>Vibe level: <strong>{{VIBE_LEVEL}}</strong></p>
+      <p>Last updated: <strong>{{LAST_UPDATED}}</strong></p>
+    </div>
+
     <!-- Haikus will be injected/generated here -->
     <div class="haiku">
-      <div class="date">{{DATE}}</div>
       <div class="text">
         {{HAIKU}}
       </div>
