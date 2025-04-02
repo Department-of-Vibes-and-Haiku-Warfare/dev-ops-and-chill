@@ -42,6 +42,7 @@ jobs:
         run: |
           echo "${{ secrets.BOT_GPG_KEY }}" | base64 --decode > chaosbot.asc
           gpg --batch --import chaosbot.asc
+          echo "batch" >> ~/.gnupg/gpg.conf
 
           KEY_ID=$(gpg --list-secret-keys --with-colons | grep '^fpr' | head -n1 | cut -d: -f10)
           echo "$KEY_ID:6:" | gpg --import-ownertrust
@@ -53,7 +54,7 @@ jobs:
           git config --global gpg.program gpg
 
           git add docs/index.html
-          git -c gpg.program="gpg --batch" \
+          git -c gpg.program=gpg \
               -c commit.gpgsign=true \
               -c user.signingkey=$KEY_ID \
               commit -S -m "Signed haiku update"
