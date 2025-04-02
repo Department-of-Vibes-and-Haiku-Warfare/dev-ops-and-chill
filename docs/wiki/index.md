@@ -19,7 +19,7 @@ This wiki is organized into sections that cover the following:
 
 We welcome contributions! If you have an idea, improvement, or bug fix, please feel free to fork the repository, make changes, and submit a pull request.
 
-- [Read the Contribution Guidelines](CONTRIBUTING.md)
+- [Read the Contribution Guidelines](contributing.md)
 
 ## Key Resources
 
