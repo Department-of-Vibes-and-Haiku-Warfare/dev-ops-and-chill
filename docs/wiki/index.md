@@ -23,6 +23,7 @@ We welcome contributions! If you have an idea, improvement, or bug fix, please f
 
 ## Key Resources
 
+- [Developer Resources](development.md)
 - [GitHub Pages Setup Guide](site-setup.md)
 - [GitHub Actions](github-actions.md)
 - [Privacy & Anonymity Resources](privacy-anonymity.md)
