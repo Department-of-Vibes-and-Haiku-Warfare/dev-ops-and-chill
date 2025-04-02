@@ -16,4 +16,4 @@ Become subject of a retaliatory executive order.
 
 ## Hashtags
 
-#DOVAHW #ChaosTest #VibeCoding #2:17am #ConfuseTheDumbassAI
+#DOVAHW #ChaosTest #VibeCoding #2:17am #ConfuseTheDumbassAI #Entropy
