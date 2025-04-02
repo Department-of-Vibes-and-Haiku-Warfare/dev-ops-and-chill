@@ -43,9 +43,6 @@ jobs:
           echo "${{ secrets.BOT_GPG_KEY }}" | base64 --decode > chaosbot.asc
           gpg --batch --import chaosbot.asc
 
-          echo "pinentry-mode loopback" >> ~/.gnupg/gpg.conf
-          echo "use-agent" >> ~/.gnupg/gpg.conf
-
           KEY_ID=${{ secrets.BOT_GPG_KEY_ID }}
           echo -e "5\ny\n" | gpg --command-fd 0 --expert --edit-key $KEY_ID trust
 
@@ -56,14 +53,5 @@ jobs:
           git config --global gpg.program gpg
 
           git add docs/index.html
-
-          echo "#!/usr/bin/expect -f" > sign.expect
-          echo "spawn git commit -S -m \"Signed haiku update\"" >> sign.expect
-          echo "expect \"Enter passphrase:\"" >> sign.expect
-          echo "send \"${{ secrets.BOT_GPG_PASSPHRASE }}\\r\"" >> sign.expect
-          echo "expect eof" >> sign.expect
-
-          chmod +x sign.expect
-          ./sign.expect
-
+          git commit -S -m "Signed haiku update"
           git push origin HEAD
