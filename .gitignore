@@ -412,3 +412,6 @@ _output.html
 # Key files
 *.asc
 *.asc.b64
+
+# Ignreo scraped tweet
+src/scraper/latest-tweet.txt

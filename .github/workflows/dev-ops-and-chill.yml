@@ -26,6 +26,14 @@ jobs:
         with:
           dotnet-version: "9.0"
 
+      - name: Cache .NET packages
+        uses: actions/cache@v3
+        with:
+          path: ~/.nuget/packages
+          key: ${{ runner.os }}-nuget-${{ hashFiles('**/*.csproj') }}
+          restore-keys: |
+            ${{ runner.os }}-nuget-
+
       - name: Install dependencies
         run: |
           dotnet restore
@@ -34,9 +42,27 @@ jobs:
         run: |
           dotnet build src/HaikuGenerator/HaikuGenerator.csproj --configuration Release
 
-      - name: Run HaikuGenerator
+      - name: Cache Node.js modules
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('src/scraper/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Install Node.js and run scraper
         run: |
-          dotnet run --project src/HaikuGenerator/HaikuGenerator.csproj docs/index.html
+          cd src/scraper
+          npm ci
+          npm start
+
+      - name: Run HaikuGenerator
+        env:
+          OUTPUT_PATH: ${{ github.workspace }}/docs/index.html
+          TWEET_PATH: ${{ github.workspace }}/src/scraper/latest-tweet.txt
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: |
+          dotnet run --project src/HaikuGenerator/HaikuGenerator.csproj
 
       - name: Commit and Push Changes
         run: |
