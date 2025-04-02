@@ -6,6 +6,23 @@ Welcome to the official wiki for the **[Department of Vibes and Haiku Warfare](h
 
 We are a collective focused on creating a safe, anonymous, and creative digital space, blending technology, privacy, and creative expression. Our mission includes building tools for privacy, automating workflows, and promoting innovation.
 
+In other words: Dev, Ops, and chill.
+
+Stretch goal: Become subject of a [retaliatory executive order](https://www.npr.org/2025/03/28/g-s1-56890/law-firms-sue-trump).
+
+## Project(s)
+
+[Dev, Ops, and chill](https://github.com/Department-of-Vibes-and-Haiku-Warfare/dev-ops-and-chill): Every morning at [2:17am](https://github.com/Department-of-Vibes-and-Haiku-Warfare/dev-ops-and-chill/blob/main/.github/workflows/dev-ops-and-chill.yml) we [scrape](https://github.com/Department-of-Vibes-and-Haiku-Warfare/dev-ops-and-chill/tree/main/src/scraper) Donny's latest [tweet](https://x.com/realDonaldTrump), [analyze](https://github.com/Department-of-Vibes-and-Haiku-Warfare/dev-ops-and-chill/tree/main/src/HaikuGenerator) it for mood and vibe, generate a [subtly mocking haiku](https://github.com/Department-of-Vibes-and-Haiku-Warfare/dev-ops-and-chill/blob/main/src/HaikuGenerator/Program.cs), and post it to our [main page](https://dovahw.xyz/).
+
+### Toolchain
+
+- Node.js & puppeteer w/ stealth for tweet scraping
+- .Net 9.0 & OpenAI API for mood analysis and haiku generation
+- GitHub Pages for site hosting
+- GitHub Actions & GPGTools for the automagik
+
+[More info on toolchain](github-actions.md)
+
 ## Wiki Structure
 
 This wiki is organized into sections that cover the following:
