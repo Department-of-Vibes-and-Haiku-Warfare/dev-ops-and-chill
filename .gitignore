@@ -408,3 +408,7 @@ src/HaikuGenerator/_output.html
 
 # Ignore debub output files
 _output.html
+
+# Key files
+*.asc
+*.asc.b64
