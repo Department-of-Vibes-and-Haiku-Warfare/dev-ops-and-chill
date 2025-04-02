@@ -47,5 +47,5 @@ We welcome contributions! If you have an idea, improvement, or bug fix, please f
 - [GitHub Actions](github-actions.md): CI/CD workflows, automated testing, and bot operations.
 - [Privacy & Anonymity Resources](privacy-anonymity.md): Tools and advice for maintaining personal privacy and secure identities online.
 - [Organization](organization.md): Overview of our structure, internal roles, and team protocols.
-- [OPSEC Guidelines](opsec-guidelines.md): Operational security tips and procedures for maintaining anonymity and minimizing digital footprints.
+- [OPSEC Guidelines](OPSEC.md): Operational security tips and procedures for maintaining anonymity and minimizing digital footprints.
 - [Postmortems](postmortems.md): Incident reviews and lessons learned from past operations and experiments.
